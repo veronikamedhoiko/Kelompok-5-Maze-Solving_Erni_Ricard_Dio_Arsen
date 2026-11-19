@@ -1,0 +1,1 @@
+[run]\nbranch = True\nsource = src\nomit =\n    */__init__.py\n\n[report]\nshow_missing = True\n
