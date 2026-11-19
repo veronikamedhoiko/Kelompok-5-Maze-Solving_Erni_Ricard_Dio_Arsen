@@ -2,7 +2,6 @@ import unittest
 
 from src.maze import Maze
 
-
 class TestMaze(unittest.TestCase):
 
     def test_valid_maze(self):
@@ -32,7 +31,6 @@ class TestMaze(unittest.TestCase):
             {(0, 1), (1, 0)},
         )
         self.assertIn("*", maze.render(((0, 0), (0, 1), (1, 1))))
-
 
 if __name__ == "__main__":
     unittest.main()

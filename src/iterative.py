@@ -6,7 +6,7 @@ def solve_bfs(maze):
     frontier = Queue()
     frontier.enqueue(maze.start)
     parents = {maze.start: None}
-
+    
     while not frontier.is_empty():
         current = frontier.dequeue()
         if current == maze.end:

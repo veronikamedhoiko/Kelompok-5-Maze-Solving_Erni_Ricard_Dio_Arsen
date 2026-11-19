@@ -1,8 +1,6 @@
 """Representasi dan validasi labirin."""
-
 class Maze:
     """Labirin berbasis tuple string; '#' adalah tembok dan '.' adalah jalan."""
-
     def __init__(self, rows):
         if not rows:
             raise ValueError("Maze tidak boleh kosong")
@@ -31,21 +29,12 @@ class Maze:
     def is_open(self, position):
         """True jika posisi berada di dalam Maze dan bukan tembok."""
         row, column = position
-        return (
-            0 <= row < self.height
-            and 0 <= column < self.width
-            and self._rows[row][column] != "#"
-        )
+        return (0 <= row < self.height and 0 <= column < self.width and self._rows[row][column] != "#")
 
     def neighbors(self, position):
         """Mengembalikan tetangga valid: atas, kanan, bawah, kiri."""
         row, column = position
-        candidates = (
-            (row - 1, column),
-            (row, column + 1),
-            (row + 1, column),
-            (row, column - 1),
-        )
+        candidates = ((row - 1, column),(row, column + 1),(row + 1, column),(row, column - 1),)
         return tuple(point for point in candidates if self.is_open(point))
 
     def render(self, path=()):

@@ -3,7 +3,6 @@ import unittest
 from src.maze import Maze
 from src.iterative import solve_bfs
 
-
 class TestIterative(unittest.TestCase):
 
     def test_bfs_finds_shortest_path(self):
@@ -20,7 +19,6 @@ class TestIterative(unittest.TestCase):
         path = solve_bfs(maze)
         self.assertEqual(path[0], maze.start)
         self.assertEqual(path[-1], maze.end)
-
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,11 +1,7 @@
 """Pencarian jalur Maze secara rekursif menggunakan Depth-First Search."""
 
-
 def solve_recursive(maze):
-    """Mencari jalur dari S ke E secara rekursif.
-
-    Mengembalikan tuple koordinat dari S ke E, atau None jika tidak ada jalur.
-    """
+    """Mencari jalur dari S ke E secara rekursif.Mengembalikan tuple koordinat dari S ke E, atau None jika tidak ada jalur."""
     visited = set()
     path = []
 

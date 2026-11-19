@@ -1,21 +1,16 @@
 """Implementasi Queue berbasis singly linked list."""
-
 class _Node:
     """Node internal untuk Queue."""
 
     def __init__(self, value):
         self.value = value
         self.next = None
-
-
 class Queue:
     """Queue dengan prinsip First In, First Out (FIFO)."""
-
     def __init__(self):
         self._front = None
         self._rear = None
         self._size = 0
-
     def enqueue(self, value):
         """Menambahkan elemen ke belakang Queue."""
         node = _Node(value)
