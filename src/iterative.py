@@ -2,9 +2,7 @@
 from src.queue import Queue
 
 def solve_bfs(maze):
-    """Mencari jalur terpendek dengan Breadth-First Search.
-    Mengembalikan tuple koordinat dari S ke E, atau None jika tidak ada jalur.
-    """
+    """Mencari jalur terpendek dengan Breadth-First Search.Mengembalikan tuple koordinat dari S ke E, atau None jika tidak ada jalur."""
     frontier = Queue()
     frontier.enqueue(maze.start)
     parents = {maze.start: None}
