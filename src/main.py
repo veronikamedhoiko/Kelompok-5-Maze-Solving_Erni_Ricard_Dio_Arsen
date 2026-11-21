@@ -16,7 +16,7 @@ def main():
     maze = Maze(rows)
     bfs_path = solve_bfs(maze)
     dfs_path = solve_recursive(maze)
-
+    
     print("=== MAZE SOLVING ===")
     print("\nMaze awal:")
     print(maze.render())

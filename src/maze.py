@@ -21,6 +21,7 @@ class Maze:
         self.width = width
         self.start = self._find("S")
         self.end = self._find("E")
+
     def _find(self, marker):
         for row_index, row in enumerate(self._rows):
             column_index = row.find(marker)
