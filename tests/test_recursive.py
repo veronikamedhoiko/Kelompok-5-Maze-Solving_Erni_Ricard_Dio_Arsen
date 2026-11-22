@@ -1,6 +1,14 @@
 # ANGOTA_4:
 
-"""Pencarian jalur Maze secara rekursif menggunakan DFS."""
+import unittest
+
+class TestRecursive(unittest.TestCase):
+
+    def test_recursive(self):
+        # Masukkan pengujian recursive di sini
+        self.assertTrue(True)
+        
+        """Pencarian jalur Maze secara rekursif menggunakan DFS."""
 def solve_recursive(maze):
     """Mengembalikan jalur pertama yang ditemukan atau None."""
     visited = set()
@@ -23,3 +31,6 @@ def solve_recursive(maze):
     if visit(maze.start):
         return tuple(path)
     return None
+
+    if __name__ == "__main__":
+        unittest.main()
