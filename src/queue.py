@@ -27,10 +27,10 @@ class Queue:
         '''Menghapus dan mengembalikan elemen paling depan'''
         if self.is_empty():
             raise IndexError('dequeue from empty queue')
-        value = self.front.value
-        self.front = self.front.next
-        self.size -= 1
-        if self.front is None:
+        value = self._front.value
+        self._front = self._front.next
+        self._size -= 1
+        if self._front is None:
             self.rear = None
         return value
     def peek(self):
