@@ -4,32 +4,32 @@ from src.queue import Queue
 
 class TestQueue(unittest.TestCase):
     def test_new_queue_is_empty(self):
-        q = Queue()
-        self.assertTrue(q.is_empty())
-        self.assertEqual(len(q), 0)
+        queue = Queue()
+        self.assertTrue(queue.is_empty())
+        self.assertEqual(len(queue), 0)
     def test_enqueue_dequeue_fifo(self):
-        q = Queue()
-        q.enqueue(10)
-        q.enqueue(20)
-        self.assertEqual(q.dequeue(), 10)
-        self.assertEqual(q.dequeue(), 20)
-        self.assertTrue(q.is_empty())
+        queue = Queue()
+        queue.enqueue(10)
+        queue.enqueue(20)
+        self.assertEqual(queue.dequeue(), 10)
+        self.assertEqual(queue.dequeue(), 20)
+        self.assertTrue(queue.is_empty())
     def test_peek_does_not_remove(self):
-        q = Queue()
-        q.enqueue("A")
-        self.assertEqual(q.peek(), "A")
-        self.assertEqual(len(q), 1)
+        queue = Queue()
+        queue.enqueue("A")
+        self.assertEqual(queue.peek(), "A")
+        self.assertEqual(len(queue), 1)
     def test_empty_operations(self):
-        q = Queue()
+        queue = Queue()
         with self.assertRaises(IndexError):
-            q.dequeue()
+            queue.dequeue()
         with self.assertRaises(IndexError):
-            q.peek()
+            queue.peek()
     def test_reuse_after_becoming_empty(self):
-        q = Queue()
-        q.enqueue(1)
-        self.assertEqual(q.dequeue(), 1)
-        q.enqueue(2)
-        self.assertEqual(q.dequeue(), 2)
+        queue = Queue()
+        queue.enqueue(1)
+        self.assertEqual(queue.dequeue(), 1)
+        queue.enqueue(2)
+        self.assertEqual(queue.dequeue(), 2)
 if __name__ == "__main__":
     unittest.main()
