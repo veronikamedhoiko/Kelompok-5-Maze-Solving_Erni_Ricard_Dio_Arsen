@@ -4,7 +4,6 @@
 from src.maze import Maze
 from src.iterative import solve_bfs
 from src.recursive import solve_recursive
-
 def main():
     rows = (
         "S.........",
