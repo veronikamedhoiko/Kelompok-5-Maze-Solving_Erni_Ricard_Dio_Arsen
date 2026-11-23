@@ -1,4 +1,4 @@
-# ANGOTA_4:
+# ANGGOTA_4:
 
 """Pencarian jalur Maze secara rekursif menggunakan DFS."""
 def solve_recursive(maze):

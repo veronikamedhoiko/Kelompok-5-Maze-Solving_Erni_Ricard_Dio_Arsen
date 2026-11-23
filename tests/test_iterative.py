@@ -1,4 +1,4 @@
-# ANGOTA_4:
+# ANGGOTA_4:
 
 import unittest
 from src.maze import Maze

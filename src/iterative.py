@@ -1,4 +1,4 @@
-# ANGOTA_4:
+# ANGGOTA_4:
 
 """Pencarian jalur Maze secara iteratif menggunakan BFS dan Queue."""
 from src.queue import Queue
@@ -16,6 +16,7 @@ def solve_bfs(maze):
             if neighbor not in parents:
                 parents[neighbor] = current
                 frontier.enqueue(neighbor)
+
     return None
 def _build_path(parents, end):
     path = []
