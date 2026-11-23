@@ -5,6 +5,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
+        
 class SinglyLinkedList:
     """Implementasi struktur data Single Linked List."""
     def __init__(self):

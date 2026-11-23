@@ -190,11 +190,9 @@ def show_maze_images(rows, bfs_path, dfs_path):
         fig, ax = plt.subplots(figsize=(8, 7))
 
         ax.imshow(maze_data, cmap=cmap, vmin=0, vmax=2)
-
         ax.set_xticks(range(width + 1), minor=True)
         ax.set_yticks(range(height + 1), minor=True)
         ax.grid(which="minor", color="black", linewidth=1.2)
-
         ax.tick_params(
             which="both",
             bottom=False,

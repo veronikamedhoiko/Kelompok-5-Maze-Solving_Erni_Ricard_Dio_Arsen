@@ -5,7 +5,6 @@ from src.linked_list import SinglyLinkedList
 
 class TestSinglyLinkedList(unittest.TestCase):
     """Unit testing untuk Single Linked List."""
-
     def setUp(self):
         self.linked_list = SinglyLinkedList()
 
