@@ -1,36 +1,82 @@
 # ANGOTA_4:
 
-import unittest
+import unittest 
+from src.recursive import solve_recursive
+
+class MazeStub:
+    """Maze sederhana untuk pengujian Recursive."""
+
+    def __init__(self, start, end, graph):
+        self.start = start
+        self.end = end
+        self.graph = graph
+
+    def neighbors(self, position):
+        return self.graph.get(position, [])
 
 class TestRecursive(unittest.TestCase):
 
     def test_recursive(self):
-        # Masukkan pengujian recursive di sini
-        self.assertTrue(True)
-        
-        """Pencarian jalur Maze secara rekursif menggunakan DFS."""
-def solve_recursive(maze):
-    """Mengembalikan jalur pertama yang ditemukan atau None."""
-    visited = set()
-    path = []
-    def visit(position):
-        if position == maze.end:
-            path.append(position)
-            return True
-        if position in visited:
-            return False
+         """Pengujian algoritma DFS Recursive."""
+    def test_recursive_finds_path(self):
+        maze = MazeStub(
+            start=(0, 0),
+            end=(0, 2),
+            graph={
+                (0, 0): [(0, 1)],
+                (0, 1): [(0, 2)],
+                (0, 2): []
+            }
+        )
 
-        visited.add(position)
-        path.append(position)
-        for neighbor in maze.neighbors(position):
-            if neighbor not in visited and visit(neighbor):
-                return True
-                
-        path.pop()
-        return False
-    if visit(maze.start):
-        return tuple(path)
-    return None
+        result = solve_recursive(maze)
 
+        self.assertEqual(
+            result,
+            ((0, 0), (0, 1), (0, 2))
+        )
+
+    def test_recursive_no_path(self):
+        maze = MazeStub(
+            start=(0, 0),
+            end=(2, 2),
+            graph={
+                (0, 0): [(0, 1)],
+                (0, 1): []
+            }
+        )
+
+        result = solve_recursive(maze)
+
+        self.assertIsNone(result)
+
+    def test_recursive_start_equals_end(self):
+        maze = MazeStub(
+            start=(0, 0),
+            end=(0, 0),
+            graph={}
+        )
+
+        result = solve_recursive(maze)
+
+        self.assertEqual(result, ((0, 0),))
+
+    def test_recursive_with_cycle(self):
+        maze = MazeStub(
+            start=(0, 0),
+            end=(0, 2),
+            graph={
+                (0, 0): [(0, 1)],
+                (0, 1): [(0, 0), (0, 2)],
+                (0, 2): []
+            }
+        )
+
+        result = solve_recursive(maze)
+
+        self.assertEqual(
+            result,
+            ((0, 0), (0, 1), (0, 2))
+        )
     if __name__ == "__main__":
         unittest.main()
