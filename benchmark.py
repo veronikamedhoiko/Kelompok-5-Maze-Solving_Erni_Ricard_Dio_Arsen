@@ -9,6 +9,7 @@ import gc
 import statistics
 import time
 import tracemalloc
+import matplotlib.pyplot as plt
 
 from src.maze import Maze
 from src.iterative import solve_bfs
@@ -48,57 +49,15 @@ def measure_time(function, maze):
 def measure_memory(function, maze):
     gc.collect()
     tracemalloc.start()
-
-    before_memory, _ = tracemalloc.get_traced_memory()
-    function(maze)
-    _, peak_memory = tracemalloc.get_traced_memory()
-    memory_used = max(0, peak_memory - before_memory)
-    tracemalloc.stop()
-
-    return memory_used / 1024
-def show_graph(time_results, memory_results):
-
-     """Menampilkan grafik waktu dan penggunaan memori."""
-     names = list(time_results.keys())
-
-    # Grafik 1: Waktu eksekusi
-     time_values = [
-        time_results[name] * 1000
-        for name in names
-    ]
-     plt.figure(figsize=(8, 5))
-     plt.bar(names, time_values)
-
-     plt.title("Perbandingan Waktu Eksekusi BFS dan DFS")
-     plt.xlabel("Algoritma")
-     plt.ylabel("Waktu (milidetik)")
-
-     for index, value in enumerate(time_values):
-        plt.text(index, value, f"{value:.4f} ms", ha="center")
-
-     plt.tight_layout()
-     plt.savefig("grafik_waktu.png")
-     plt.show()
-
-    # Grafik 2: Penggunaan memori
-     memory_values = [
-        memory_results[name]
-        for name in names
-    ]
-
-     plt.figure(figsize=(8, 5))
-     plt.bar(names, memory_values)
-
-     plt.title("Perbandingan Penggunaan Memori BFS dan DFS")
-     plt.xlabel("Algoritma")
-     plt.ylabel("Memori (KB)")
-
-     for index, value in enumerate(memory_values):
-        plt.text(index, value, f"{value:.2f} KB", ha="center")
-
-     plt.tight_layout()
-     plt.savefig("grafik_memori.png")
-     plt.show()
+    try:
+        before_memory, _ = tracemalloc.get_traced_memory()
+        tracemalloc.reset_peak()
+        function(maze)
+        _, peak_memory = tracemalloc.get_traced_memory()
+        memory_used = max(0, peak_memory - before_memory)
+        return memory_used / 1024
+    finally:
+        tracemalloc.stop()
 
 # 3. Program utama benchmark
 def show_graph(time_results, memory_results):
@@ -251,7 +210,7 @@ def main():
     }
 
     print("=" * 55)
-    print("       BENCHMARK MAZE SOLVING")
+    print("BENCHMARK MAZE SOLVING")
     print("=" * 55)
 
     # Menampilkan maze awal
@@ -288,10 +247,15 @@ def main():
     print("-" * 55)
 
     for name, function in algorithms.items():
-        memory = measure_memory(function, maze)
-        memory_results[name] = memory
+        memory_samples = []
 
-        print(f"{name}: {memory:.2f} KB")
+        for _ in range(REPEATS):
+            memory = measure_memory(function, maze)
+            memory_samples.append(memory)
+
+        memory = statistics.median(memory_samples)
+        memory_results[name] = memory
+        print(f"{name}: {memory:.4f} KB")
 
     # Membuat grafik
     print("\nMembuat grafik perbandingan...")
